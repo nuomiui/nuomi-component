@@ -1,0 +1,181 @@
+.border-top(@border-color: #e1e1e1) {
+    border: none;
+    position: relative;
+    &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        top: 0;
+        background: @border-color;
+        -webkit-transform-origin: 0 0;
+                transform-origin: 0 0;
+    }
+}
+.border-top-dotted() {
+    border: none;
+    position: relative;
+    &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        top: 0;
+        background: url("./img/dian.png") repeat-x;
+        background-size: 3.5px 1px;
+    }
+}
+.border-right(@border-color: #e1e1e1) {
+    position: relative;
+    &:after {
+        content: "";
+        width: 1px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: @border-color;
+        -webkit-transform-origin: 100% 0;
+                transform-origin: 100% 0;
+    }
+}
+.border-bottom(@border-color: #e1e1e1) {
+    border: none;
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        bottom: 0;
+        background: @border-color;
+        -webkit-transform-origin: 0 100%;
+                transform-origin: 0 100%;
+    }
+}
+
+.border-left(@border-color: #e1e1e1) {
+    border: none;
+    position: relative;
+    &:before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        left: 0;
+        top: 0;
+        background: @border-color;
+        -webkit-transform-origin: left center;
+                transform-origin: left center;
+    }
+}
+
+.border-all(@border-color: #e1e1e1, @border-width: 1px, @border-radius: 0) {
+    border: none;
+    position: relative;
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 0;
+        line-height: 0;
+        border-radius: @border-radius;
+        background: none;
+        border: @border-width solid @border-color;
+        -webkit-transform-origin: 0 0;
+                transform-origin: 0 0;
+
+    }
+}
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+not all {
+    .border-top:before,
+    .border-bottom:after {
+        -webkit-transform: scaleY(.667);
+    }
+    .border-right:after,
+    .border-left:before {
+        -webkit-transform: scaleX(.667);
+    }
+    .border-all:before {
+        width: 150%;
+        height: 150%;
+        -webkit-transform: scale(.667);
+    }
+}
+
+.border-bottom-dotted() {
+    border: none;
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        bottom: 0;
+        background: url("./img/dian.png") repeat-x;
+        background-size: 3.5px 1px;
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+not all {
+    .border-top:before,
+    .border-bottom:after {
+        -webkit-transform: scaleY(.5);
+    }
+    .border-right:after,
+    .border-left:before {
+        -webkit-transform: scaleX(.5);
+    }
+    .border-all:before {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(.5);
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 3),
+not all {
+    .border-top:before,
+    .border-bottom:after {
+        -webkit-transform: scaleY(.3333);
+    }
+    .border-right:after,
+    .border-left:before {
+        -webkit-transform: scaleX(.3333);
+    }
+    .border-all:before {
+        width: 300%;
+        height: 300%;
+        -webkit-transform: scale(.3333);
+    }
+}
+@keyframes animation-popdown {
+    from {
+        transform: translateY(-148px);
+        -webkit-transform: translateY(-148px);
+    }
+    to {
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+    }
+}
+@-webkit-keyframes animation-popdown {
+    from {
+        transform: translateY(-148px);
+        -webkit-transform: translateY(-148px);
+    }
+    to {
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+    }
+}
+

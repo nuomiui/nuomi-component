@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>页面展示</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+</head>
+<body>
+    <div id="loading">加载中...</div>
+    <div id="error"></div>
+    <div id="qrCodeLayer">
+        <div class="bg"></div>
+        <div class="content">
+            <div id="qrCode"></div>
+        </div>
+    </div>
+    <div id="devtoolsTips" class="red">
+        <p><span class="start-title"></span>当前正在运行项目</p>
+        <p><span class="stop-title"></span>没有运行中的项目</p>
+        <p><span class="tip-qr"></span>点击后糯米客户端扫码测试</p>
+    </div>
+    <section id="debugProject"></section>
+    <section id="stopProject"></section>
+    <script type="text/javascript" src="./js/libs/browser.min.js"></script>
+    <script type="text/javascript" src="./js/libs/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="./js/libs/jquery.qrcode.min.js"></script>
+    <script type="text/babel" src="./js/index.js"></script>
+</body>
+</html>

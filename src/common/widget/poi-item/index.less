@@ -1,0 +1,233 @@
+.poi-item {
+    padding-top: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    .merchant {
+        padding-bottom: 10px;
+        margin: 0 4%;
+        .img {
+            display: inline-block;
+            width: 85px;
+            height: 65px;
+            float: left;
+            margin-right: 15px;
+            overflow: hidden;
+            img {
+                width: 100%;
+                min-height: 65px;
+            }
+        }
+        .information {
+            position: relative;
+            height: 65px;
+            overflow: hidden;
+            padding-top: 1px;
+            .info{
+                line-height: 16px;
+                height: 16px;
+                line-height: 16px;
+                position: relative;
+                .title {
+                    display: inline-block;
+                    color: #000;
+                    text-align: left;
+                    font-size: 16px;
+                    min-width: 30%;
+                    max-width: 50%;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    display: inline-block;
+                    margin-right: 12px;
+                    &.middle {
+                        max-width: 70%;
+                    }
+                    &.large {
+                        max-width: 100%;
+                    }
+                }
+                .ads {
+                    vertical-align: 1px;
+                    font-size: 12px;
+                    color: #999;
+                }
+                .icons {
+                    position: absolute;
+                    right: 0;
+                    top: 1px;
+                    height: 15px;
+                    line-height: 15px;
+                    span {
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+
+            .poi-star {
+                margin-top: 10px;
+                .reason {
+                    font-size: 12px;
+                    line-height: 12px;
+                    height: 12px;
+                    float: right;
+                    color: #ff7e00;
+                    width: 45%;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    display: inline-block;
+                    text-align: right;
+                }
+            }
+            .price {
+                position: absolute;
+                left: 14px;
+                bottom: 1px;
+                font-size: 12px;
+                color: #999;
+                line-height: 12px;
+                height: 12px;
+            }
+            .biz-area {
+                position: absolute;
+                right: 0;
+                bottom: 1px;
+                font-size: 12px;
+                color: #999;
+                line-height: 12px;
+                height: 12px;
+                .after-point {
+                    margin-right: 6px;
+                    &:after{
+                        display: inline-block;
+                        content: ".";
+                        width: 6px;
+                        position: absolute;
+                        text-align: center;
+                        top: -4px;
+                    }
+                }
+            }
+        }
+    }
+    .group-info {
+        padding: 0 4%;
+        .fu, .tuan {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            height: 15px;
+            line-height: 15px;
+            .sub-title {
+                display: inline-block;
+                margin-right: 15px;
+                width: 85px;
+                text-align: right;
+                .icon {
+                    background-color: #ff7e00;
+                    display: inline-block;
+                    border-radius: 30px;
+                    color: #fff;
+                    font-size: 20px;
+                    transform: scale(.5);
+                    width: 30px;
+                    line-height: 30px;
+                    height: 30px;
+                    -webkit-transform: scale(.5);
+                    -moz-transform: scale(.5);
+                    -ms-transform: scale(.5);
+                    -o-transform: scale(.5);
+                    font-style: normal;
+                    font-weight: 400;
+                    text-align: center;
+                    transform-origin: center;
+                    margin-top: -9px;
+                    margin-right: -8px;
+                    &.tuan-icon {
+                        background-color: #ff4360;
+                        margin-top: -26px;
+                    }
+                }
+                .tag {
+                    position: relative;
+                    height: 100%;
+                    box-sizing: border-box;
+                    border: 1px solid #ff562f;
+                    border-radius: 5px 0 0 5px;
+                    border-right: none;
+                    font-size: 14px;
+                    line-height: 18px;
+                    height: 22px;
+                    width: 70px;
+                    color: #ff562f;
+                    margin-top: -4px;
+                    -webkit-transform: scale(.5);
+                    -moz-transform: scale(.5);
+                    -ms-transform: scale(.5);
+                    -o-transform: scale(.5);
+                    transform: scale(.5);
+                    display: inline-block;
+                    margin-right: 10px;
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        width: 1px;
+                        height: 57%;
+                        background: #ff562f;
+                        /*. transform(rotate(- 25 deg));*/
+                        /*. transform-origin(0 0);*/
+                        transform: rotate(-25deg);
+                        -webkit-transform:rotate(-25deg);
+                        transform-origin: 0 0;
+                        -webkit-transform-origin: 0 0;
+                    }
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        width: 1px;
+                        height: 57%;
+                        background: #ff562f;                        /*. transform(rotate(25 deg));*/
+                        transform: rotate(25deg);
+                        -webkit-transform:rotate(25deg);
+                        transform-origin: 0 100%;
+                        -webkit-transform-origin: 0 100%;
+                    }
+                    .tag-text {
+                        display: inline-block;
+                        white-space: nowrap;
+                        line-height: 20px;
+                        padding-left: 3px;
+                        &:after {
+                            content: '';
+                            display: inline-block;
+                            margin-top: -3px;
+                            margin-right: 3px;
+                            vertical-align: middle;
+                            width: 3px;
+                            height: 3px;
+                            border-radius: 3px;
+                            background: #ff562f;
+                        }
+                    }
+                }
+            }
+            .content {
+                font-size: 12px;
+                height: 12px;
+                color: #666;
+                position: relative;
+                width: 65.98639455782312%;
+                display: inline-block;
+                line-height: 12px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}
