@@ -73,6 +73,8 @@ var commonAPI = {
     modulePath: path.join(abs('output'), args.module),
     // 项目产出目录
     releasePath: abs('release'),
+    //项目产出目录
+    releaseModulePath: path.join(abs('release'), args.module),
     // cli目录
     cliPath: abs('cli'),
     // 全局公共工具、组件目录
