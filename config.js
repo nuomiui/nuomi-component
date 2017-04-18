@@ -14,9 +14,9 @@ module.exports = {
         host: '0.0.0.0',
         proxy: [{
             context: ['/gaiya'],
-            target: 'http://cp01-rdqa-dev132.cp01.baidu.com:8181',
+            target: 'http://cp01-t10-qa-test05.epc.baidu.com:8182',
             headers: {
-                Host: 'cp01-rdqa-dev132.cp01.baidu.com',
+                Host: 'cp01-t10-qa-test05.epc.baidu.com',
                 'Access-Control-Allow-Origin': '*'
             },
             secure: false
@@ -26,7 +26,7 @@ module.exports = {
     webserverRoot: '',
     // webserverRoot: '/channel/output',
     //糯米组件平台分散认证域名
-    domainlist: ['app.nuomi.com'],
+    domainlist: ['app.nuomi.com', 'chi.nuomi.com'],
     // 是否开启文件监听和请求参数补全
     audient: true
 }

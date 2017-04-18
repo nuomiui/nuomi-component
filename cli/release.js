@@ -8,6 +8,7 @@ const WebpackDelPlugin = require('webpack-del-plugin');
 const WebpackZipPlugin = require('zip-webpack-plugin');
 const cssnano = require('cssnano');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const rimraf = require('rimraf');
 
 const commonApi = require('./util/common');
 const WebpackGenerateConfig = require('./util/generateconfig');
@@ -31,13 +32,11 @@ if (!commonApi.isPro) {
     // 当--e!=pro 时自动打印调试信息增加调试信息
     plugins.unshift(new StringReplacePlugin());
 }
-
+//release 文件产出到release 文件夹
+webpackConfig.output.path = commonApi.releaseModulePath;
 
 plugins.unshift(new webpack.NoEmitOnErrorsPlugin());
-// 删除缓存文件
-plugins.unshift(new WebpackDelPlugin({
-    match: path.join(commonApi.modulePath, '*')
-}));
+
 // 压缩js
 plugins.push(new webpack.optimize.UglifyJsPlugin({
     compress: {
@@ -59,4 +58,10 @@ plugins.push(new WebpackZipPlugin({
     path: commonApi.releasePath,
     filename: commonApi.args.module + '_' +  commonApi.args.env +'.zip'
 }));
+// 删除缓存文件
+plugins.push(function () {
+    this.plugin("done", function(compilation, callback) {
+      rimraf.sync(commonApi.releaseModulePath);
+  });
+});
 module.exports = webpackConfig;

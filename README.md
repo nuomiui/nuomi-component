@@ -4,38 +4,40 @@
 #### 安装依赖
 [yarn or npm命令对比](http://www.wemlion.com/2016/npm-vs-yarn-cheat-sheet/)
 	
-	1、npm i -g webpack 
-	   npm i -g yarn && yarn && yarn global add webpack
+	1、安装webpack
+	   npm i -g webpack | yarn global add webpack
 	
-	2、yarn or npm i
+	2、yarn | npm i
 
 
-#### 创建糯米组件
+#### 创建项目
+	1、创建糯米组件
 
-	npm run project --module=组件名称
+		npm run project --module=组件名称
 
-#### 创建Page页面
+	2、创建Page页面
 
-	npm run create --module=项目名称 --page=页面名称 --filedesc=描述 [--w=page/widget]
+		npm run create --module=项目名称 --page=页面名称 --filedesc=描述 [--w=page/widget]
 
 
-	最后一个参数指定 是新建page页面or widget块[默认page]
+		最后一个参数指定 是新建page页面or widget块[默认page]
 
-#### 开发
+#### 开发中
+	* 本地开发
 	npm run dev --module=模块名称
 
-#### rd开发机测试
+	* rd开发机测试
 
 	npm run rd --module=模块名称
 
-#### 发布版本
+	* 性能报告
+    npm run performance --module=组件名称
+
+#### 发布
 
 	npm run release --module=模块名称 [--e=dev|qa|pro]
 
 	默认值pro
-
-#### 性能报告
-    npm run performance --module=组件名称
 
 #### 发布上线版本包[待改造]
 

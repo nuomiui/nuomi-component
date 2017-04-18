@@ -25,7 +25,6 @@ pages.forEach(function (page) {
     entry[page] = file;
     page != 'common' && (htmls[page] = file + '.html');
 });
-console.log(commonApi.debugTool,commonApi.polyfill)
 // 是否是测试环境注入
 if (commonApi.debugTool) {
     entry.vconsole = commonApi.projectDir + '/node_modules/vconsole/dist/vconsole.min.js';

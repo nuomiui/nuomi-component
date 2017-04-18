@@ -3,6 +3,7 @@
  *
  * @author   Memoryza
  * @dateTime 2017-03-21T10:41:53+0800
+ *
  */
 const path = require('path');
 const fs = require('fs');
@@ -34,6 +35,7 @@ WebpackGenerateConfig.prototype.apply = function(compiler) {
               return fileContent.length;
           }
       };
+      fs.unlink(path.resolve(commonApi.modulePath, 'config.json'));
       callback();
   });
 };
