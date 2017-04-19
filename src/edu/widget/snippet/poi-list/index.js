@@ -5,7 +5,7 @@
  */
 import React, {Component} from 'react';
 import PoiHeader from 'widget/snippet/poi-header';
-import PoiItem from 'gwidget/poi-item';
+import PoiItem from 'widget/snippet/poi-item';
 import {Loading} from 'nuomi-ui';
 import Scroll from 'dep/onscroll';
 import {isArray, isObject, isWap, addLog} from 'util/util';
@@ -24,6 +24,7 @@ const tabList = [{name: '外语', fid: 2093}
     , {name: '早教', fid: 2017}
     , {name: '兴趣', fid: 2098}
     , {name: '其他', fid: 2149}];
+let lastReq; // 最后一次请求才渲染
 const getListData = (option, callback) => {
     option.cityId = BNJS.location.selectCityCode;
     option.location = BNJS.location.latitude + ',' + BNJS.location.longitude;
@@ -82,6 +83,7 @@ export default class PoiList extends Component {
             loadingStatus: 3,
             tabIndex: index
         });
+        pageNum = 0;
         getListData({
             pn: 0,
             fid: tabList[index].fid
@@ -94,6 +96,10 @@ export default class PoiList extends Component {
             // 全部数据
             else if (data.poi_list.length < pageSize) {
                 loadStatus = 2;
+                hasMore = 0;
+            }
+            if (data.poi_list.length >= pageSize) {
+                hasMore = 1;
             }
             thiz.setState({
                 list: data.poi_list,

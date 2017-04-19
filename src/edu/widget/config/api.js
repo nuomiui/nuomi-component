@@ -10,6 +10,6 @@ apiList.index = apiList.host + '/gaiya/jiaoyu/getInfo';
 // 列表页面API
 apiList.poilist = apiList.host + '/gaiya/jiaoyu/getList';
 //头条
-apiList.topline = 'https://chi.nuomi.com/bizareatop';
+apiList.topline = apiList.host + '/bizareatop';
 // 差异化API
 module.exports = apiList;
