@@ -46,7 +46,8 @@ yarn | npm i
 开发中可在移动端使用vconsole查看控制台输出
 
 BNJS及vConsole注入情况说明：
-| 命令        |  调试工具        | BNJS |
+
+| 命令        |  vConsole        | BNJS |
 | ------------- |:-------------:| -----:|
 | npm run dev |  注入| 注入 |
 | npm run performance| 注入   | 注入  |
@@ -71,7 +72,6 @@ BNJS及vConsole注入情况说明：
 
 [项目目录](./docs/项目目录结构.md)
 
-[其他调试说明](./docs/调试说明.md)
 
 
 

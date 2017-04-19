@@ -29,7 +29,7 @@ config.js
 
 2. 将webserver的根目录指向项目的output 文件夹
 
-3. 点击<img src="./docs/imgs/audient.png"/>
+3. 点击<img src="./imgs/audient.png"/>
 
 4. 手机扫码二维码
 
