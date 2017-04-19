@@ -59,12 +59,7 @@ module.exports = {
                 return console.log('params不能为空');
             }
         }
-        if (__DEV__) {
-            console.log(JSON.stringify(options));
-        }
-        else {
-            BNJS.statistic.addLog(options);
-        }
+        BNJS.statistic.addLog(options);
     },
     /**
      * 异常调用, msg 异常信息 pageName 页面名称
@@ -83,18 +78,14 @@ module.exports = {
         if (!pageName || !detail) {
             return console.error('请确认包含pageName和msg参数');
         }
-        if (__DEV__) {
-            console.warn('页面名称:' + pageName, '异常信息:' + detail);
-        } else {
-            BNJS.statistic.addLog({
-                actionID: 'CompPageError',
-                actionExt: (compName || 'channel'),
-                note: {
-                    compv: '1.0.0',
-                    comppage: pageName,
-                    detail: detail
-                }
-            });
-        }
+        BNJS.statistic.addLog({
+            actionID: 'CompPageError',
+            actionExt: (compName || 'channel'),
+            note: {
+                compv: '1.0.0',
+                comppage: pageName,
+                detail: detail
+            }
+        });
     }
 }

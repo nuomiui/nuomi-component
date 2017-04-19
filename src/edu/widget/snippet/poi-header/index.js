@@ -19,7 +19,7 @@ export default class PoiHeader extends Component {
         const windowWidth = $(window).width();
         let liWidth = len * $('#poiTabMenu li').width() + (len - 1) * 24;
         if (liWidth > windowWidth) {
-            liWidth += 36;
+            liWidth += 40;
             $($('#poiTabMenu li').get(len - 1)).css('margin-right', '36px');
             $('.right-linear-gradient').removeClass('hide');
         }
