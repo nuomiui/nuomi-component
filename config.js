@@ -13,10 +13,28 @@ module.exports = {
     proxy: {
         host: '0.0.0.0',
         proxy: [{
+            // 教育频道页面api代理
             context: ['/gaiya'],
-            target: 'http://cp01-t10-qa-test05.epc.baidu.com:8182',
+            target: 'http://cp01-rdqa-dev132.cp01.baidu.com:8181',
             headers: {
-                Host: 'cp01-t10-qa-test05.epc.baidu.com',
+                Host: 'cp01-rdqa-dev132.cp01.baidu.com',
+                'Access-Control-Allow-Origin': '*'
+            },
+            secure: false
+        },{
+            context: ['/bizareatop'],
+            target: 'https://chi.nuomi.com',
+            headers: {
+                Host: 'chi.nuomi.com',
+                'Access-Control-Allow-Origin': '*'
+            },
+            secure: false
+        }, {
+            // 丽人-个人中心 api代理
+            context: ['/bnnserver'],
+            target: 'http://bnhbp.nuomi.com',
+            headers: {
+                Host: 'bnhbp.nuomi.com',
                 'Access-Control-Allow-Origin': '*'
             },
             secure: false

@@ -17,7 +17,7 @@ config.js
             context: ['/bnnserver'],
             target: '开发环境指向域名',
             headers: {
-                Host: 'bnhbp.nuomi.com',
+                Host: '开发环境域名的host',
                 'Access-Control-Allow-Origin': '*'
             },
             secure: false

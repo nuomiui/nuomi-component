@@ -17,10 +17,10 @@ var args = {
     polyfill: env.polyfill === 0 ? 0 : 1
 };
 if (!args.module) {
-    console.log('Error: 请输入需要构建的模块名称, npm run [dev|rd|create] --module=[模块名]'.red);
+    console.log('Error: 请输入需要操作的模块名称, npm run [dev|rd|create] --module=[模块名]'.red);
     notifier.notify({
-        title: '构建出错',
-        message: '缺少需要构建的模块名称'
+        title: '运行出错',
+        message: '缺少需要操作的模块名称'
     });
     process.exit(0);
 }

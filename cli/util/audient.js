@@ -17,7 +17,7 @@ const excludeDir = ['node_modules', 'common', 'widget'];
 // 页面标题匹配
 const titlePattern = /@\w+\s+(.*)/;
 // 参数匹配
-const paramPattern = /\/\/@params\s*([\w-_]+)\s*=\s*['"]*([-\w]+)['"]*/;
+const paramPattern = /\/\/[ ]{0,1}@params\s*([\w-_]+)\s*=\s*['"]*([-\w]+)['"]*/;
 // 文件全局匹配
 const globalPattern = new RegExp(paramPattern, 'g');
 // 单参数匹配

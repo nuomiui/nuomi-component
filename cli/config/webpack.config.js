@@ -57,22 +57,10 @@ module.exports = {
                 })
             }, {
                 test: /\.js$/,
-                loader: 'rollup-loader',
-                // webpack-dev-server会动态的向entry里面注入node_modules/webpack-dev-server/client/index.js?http://0.0.0.0:8081 这个，所以要过滤掉
-                exclude: [/node_modules/],
-                options: {
-                  plugins: [
-                    rollupPlugin({})
-                  ]
-                }
-            }, {
-                test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
                     presets: ['react', 'es2015'],
-                    ignore: [
-                        '/src/common/libs/bnc/index.js',
-                    ],
+                    ignore: [],
                     plugins: [
                         ['transform-runtime', {
                           helpers: false,
@@ -85,7 +73,19 @@ module.exports = {
                     ],
                     compact: false
                 }
-            }, {
+            },
+            {
+                test: /\.js$/,
+                loader: 'rollup-loader',
+                // webpack-dev-server会动态的向entry里面注入node_modules/webpack-dev-server/client/index.js?http://0.0.0.0:8081 这个，所以要过滤掉
+                exclude: [/node_modules/],
+                options: {
+                  plugins: [
+                    rollupPlugin({})
+                  ]
+                }
+            },
+            {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loader: 'file-loader?name=img/[hash].[ext]' // 相对output.path
             }, {
