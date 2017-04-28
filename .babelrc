@@ -4,11 +4,11 @@
       "es2016",
       ["es2015", {"modules": false }],
       "stage-0",
-      "react"
+      "vue"
   ],
   "plugins": [
       "transform-decorators-legacy",
-      "transform-react-jsx",
+      "transform-vue-jsx",
       ["transform-runtime",
       {
         "helpers": false,

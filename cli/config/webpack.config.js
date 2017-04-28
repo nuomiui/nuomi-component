@@ -56,10 +56,13 @@ module.exports = {
                     use: ['css-loader', 'less-loader']
                 })
             }, {
+                test: /\.vue$/,
+                loader: 'vue'
+            },{
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['react', 'es2015'],
+                    presets: ['vue', 'es2015'],
                     ignore: [],
                     plugins: [
                         ['transform-runtime', {
@@ -102,9 +105,6 @@ module.exports = {
         // root: commonApi.srcPath,
         modules: [commonApi.srcPath, 'node_modules'],
         alias: {
-            // 压缩打包的时候需要这个，测试性能因为react-lite没有，注释掉然后用原生的react
-            'react': 'react-lite',
-            'react-dom': 'react-lite',
             dep: commonApi.depPath,
             mock: commonApi.mockPath,
             pkg: commonApi.pkg,

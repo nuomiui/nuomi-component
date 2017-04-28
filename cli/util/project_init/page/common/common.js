@@ -3,8 +3,7 @@
  * @author memoryza(wangjincai@baidu.com)
  */
 import './common.less';
-import 'react';
-import 'react-dom';
+import 'vue';
 import 'npm-zepto';
 import FastClick from 'fastclick';
 FastClick.attach(document.body);
