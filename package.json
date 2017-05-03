@@ -1,7 +1,7 @@
 {
-  "name": "channel",
+  "name": "nuomi-component",
   "version": "0.0.2",
-  "description": "nuomi all channel in one project",
+  "description": "nuomi component",
   "scripts": {
     "dev": "webpack-dev-server --config ./cli/dev.js --hot --inline --progress --colors --content-base output/ --port 8081",
     "performance": "webpack-dev-server --config ./cli/performance.js --hot --inline --progress --colors --content-base output/ --port 8081",
@@ -60,7 +60,7 @@
     "webpack": "^2.2.1",
     "webpack-del-plugin": "0.0.1",
     "webpack-dev-server": "^1.16.3",
-    "webpack-dev-server-output": "^0.0.6",
+    "webpack-dev-server-output": "0.0.6",
     "webpack-shell-plugin": "^0.5.0",
     "zip-webpack-plugin": "^1.0.0"
   },
@@ -69,6 +69,7 @@
     "fastclick": "^1.0.6",
     "npm-zepto": "git+https://github.com/nuomiui/npm-zepto.git#master",
     "vconsole": "^2.5.2",
+    "vue": "^2.3.0",
     "whatwg-fetch": "^2.0.3"
   }
 }

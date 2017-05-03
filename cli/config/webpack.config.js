@@ -43,8 +43,8 @@ module.exports = {
         // css文件中的img的url前缀会加publicPath
         publicPath: '../'
     },
+    // devtool: 'source-map',
     module: {
-        // devtool: 'inline-source-map',
         loaders: [
             {
                 test: /\.html$/,
@@ -57,7 +57,7 @@ module.exports = {
                 })
             }, {
                 test: /\.vue$/,
-                loader: 'vue'
+                use: 'vue-loader'
             },{
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -105,6 +105,7 @@ module.exports = {
         // root: commonApi.srcPath,
         modules: [commonApi.srcPath, 'node_modules'],
         alias: {
+            vue: 'vue/dist/vue.js',
             dep: commonApi.depPath,
             mock: commonApi.mockPath,
             pkg: commonApi.pkg,

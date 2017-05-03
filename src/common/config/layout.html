@@ -13,7 +13,10 @@
     </script>
   </head>
   <body>
-    <div id="wrapContainer"></div>
+    <div id="wrapContainer">
+      <p>{{ message }}</p>
+      <input v-model="message">
+    </div>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             document.removeEventListener('DOMContentLoaded', arguments.callee, false);

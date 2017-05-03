@@ -41,7 +41,7 @@ if (fs.existsSync(pagePath)) {
 function getJsContent() {
     var fn = 'util/template/page.js';
     if (moduleName !== 'page') {
-        fn = 'util/template/snippet.js';
+        fn = 'util/template/snippet.vue';
     }
     var jsTemp = fs.readFileSync(path.join(__dirname , fn), 'utf8');
     return jsTemp.replace(/%pagename%/g, pagename)
