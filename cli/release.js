@@ -48,7 +48,7 @@ plugins.push(new webpack.optimize.UglifyJsPlugin({
 plugins.push(new OptimizeCssAssetsPlugin({
   assetNameRegExp: /\.css$/g,
   cssProcessor: cssnano,
-  cssProcessorOptions: { discardComments: {removeAll: true } },
+  cssProcessorOptions: { discardComments: {removeAll: true } ,safe: true},
   canPrint: true
 }));
 // 添加config.json

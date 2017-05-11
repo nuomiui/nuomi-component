@@ -15,7 +15,6 @@ class App extends Component {
         super(props);
     }
     componentDidMount() {
-        BNJS.ui.hideLoadingPage();
         // debug info
     }
     render() {
@@ -23,6 +22,7 @@ class App extends Component {
     }
 };
 ready((BNJS) => {
+    BNJS.ui.hideLoadingPage();
     // performance start
     BNJS.ui.title.setTitle("%description%");
     // todo ajax请求完数据调用该渲染

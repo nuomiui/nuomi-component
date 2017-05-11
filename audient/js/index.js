@@ -64,7 +64,7 @@
                 <ul>
                 ${(list && list.length ? list.map(item => `
                     <li><a href="${(item.url.charAt(0) === '/' ? item.url : '/' + item.url) + '?' + item.qs + '&need_bnjs=1'}">${item.name}</a>
-                    <span class="qr" data-qs="${item.qs}"  data-href="http://${ipAddress + webrootDir + (item.url.charAt(0) === '/' ? item.url : '/' + item.url)}"></span></li>
+                    <span class="qr" data-qs="${item.qs}"  data-href="http://${ipAddress + webrootDir + (item.url.charAt(0) === '/' ? item.url : '/' + item.url)}"></span>
                 `).join('') : `<li>本地没有编译过该项目</li>`)}
                 </ul>`;
 
@@ -83,12 +83,25 @@
                 alert('数据解析失败');
             });
         },
+        showSbQr() {
+            let href = $(this).data('href');
+            let qs = $(this).data('qs');
+            if (href) {
+                $('#qrCodeLayer').fadeIn();
+                let params = {
+                    "url": href + (qs ? ('?' + qs) : ''),
+                    "plugin_id":"com.nuomi.dcps.plugin"
+                };
+                $('#qrCode').html('').qrcode('baiduboxapp://invokePlug?action=open&params=' + encodeURIComponent(JSON.stringify(params)));
+            }
+            return false;
+        },
         showQr() {
             let href = $(this).data('href');
             let qs = $(this).data('qs');
             if (href) {
                 $('#qrCodeLayer').fadeIn();
-                $('#qrCode').html('').qrcode('bainuo://component?url=' + encodeURIComponent(href));
+                $('#qrCode').html('').qrcode('bainuo://component?url=' + encodeURIComponent(href) + (qs ? ('&' + qs) : ''));
             }
             return false;
         },
@@ -98,6 +111,7 @@
         initEvent() {
             $(document)
                 .on('click', '.qr', this.showQr)
+                .on('click', '.sbqr', this.showSbQr)
                 .on('click', '#qrCodeLayer .bg, #qrCodeLayer .content', this.hideQr)
         },
         init() {

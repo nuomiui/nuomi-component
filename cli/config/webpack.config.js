@@ -55,12 +55,15 @@ module.exports = {
                     fallback: 'style-loader',
                     use: ['css-loader', 'less-loader']
                 })
-            }, {
+            },
+            {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
                     presets: ['react', 'es2015'],
-                    ignore: [],
+                    ignore: [
+                        '/src/common/libs/bnc/index.js',
+                    ],
                     plugins: [
                         ['transform-runtime', {
                           helpers: false,
@@ -72,17 +75,6 @@ module.exports = {
                         'transform-async-to-generator',
                     ],
                     compact: false
-                }
-            },
-            {
-                test: /\.js$/,
-                loader: 'rollup-loader',
-                // webpack-dev-server会动态的向entry里面注入node_modules/webpack-dev-server/client/index.js?http://0.0.0.0:8081 这个，所以要过滤掉
-                exclude: [/node_modules/],
-                options: {
-                  plugins: [
-                    rollupPlugin({})
-                  ]
                 }
             },
             {
