@@ -19,6 +19,7 @@ WebpackGenerateConfig.prototype.apply = function(compiler) {
           id: commonApi.args.module,
           version: '1.0.0',
           tpl: 'nuomi',
+          canPreload: 1,
           domainlist: config.domainlist,
           pages: configFile(commonApi.srcPath)
       };
