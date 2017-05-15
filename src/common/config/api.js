@@ -17,8 +17,7 @@ else if (__PRO__) {
 } else if (window.location.search.match('need_bnjs')) {
     host = '';
 }
-let apiList = {
-};
+let apiList = {};
 for (let i in apiList) {
     if (i && apiList.hasOwnProperty(i)) {
         apiList[i] = host + apiList[i];

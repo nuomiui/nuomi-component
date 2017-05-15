@@ -17,12 +17,23 @@ function back() {
 function setPageId() {
 }
 
+function getParams() {
+    var search = location.search;
+    var kv = {};
+    if (search) {
+        search = search.substr(1);
+        var params = search.split('&');
+        for(var i = 0; i < params.length; i++) {
+            var s = params[i].split('=');
+            if (params && s) {
+                kv[s[0]] = decodeURIComponent(s[1]);
+            }
+        }
+    }
+    return kv;
+}
 function getData(callback) {
-    callback({
-        spType: 2,
-        through_cid: 235,
-        through_test: 'test'
-    });
+    callback(getParams());
 }
 
 function startPay() {
