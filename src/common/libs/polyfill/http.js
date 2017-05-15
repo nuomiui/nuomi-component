@@ -63,7 +63,7 @@ function sign() {
 
 function getNA(options) {
     // 扩展参数
-    options.params.xxx = '1';
+    options.params.timestamp = +new Date();
     get(options);
 }
 
