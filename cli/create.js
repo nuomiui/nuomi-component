@@ -61,7 +61,10 @@ function getJsContent() {
 
 try {
     // 创建目录及文件
-    fs.mkdirSync(pagePath);
+    var snippet  = path.join(commonApi.srcPath, moduleName);
+    if (!fs.existsSync(snippet)) {
+        fs.mkdirSync(snippet);
+    }
     var filename = pagename;
     if (moduleName !== 'page') {
         filename = 'index';
