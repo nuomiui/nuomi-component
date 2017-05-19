@@ -1,5 +1,5 @@
 /**
- * @file     教育首页
+ * @file     测试首页
  * @author   memoryza(jincai.wang@foxmail.com)
  * @dateTime 2017-4-1 11:0:23
  */
@@ -61,7 +61,7 @@ ready((BNJS) => {
                 }
             });
         }else{
-            BNJS.ui.title.setTitle('教育培训');
+            BNJS.ui.title.setTitle('测试页面');
             BNJS.ui.title.addActionButton({
                 tag: '1',
                 text: 'Search',
@@ -90,7 +90,7 @@ ready((BNJS) => {
             type: 7,
             cityId: BNJS.location.selectCityCode,
             location: BNJS.location.latitude + ',' + BNJS.location.longitude,
-            fid: 2093,// 默认外语
+            fid: 2093,
             pn: 0,
             v: BNJS.env.appVersion,
             deviceType: isAndroid() ? 1 :(isIos() ? 2 : 0),
