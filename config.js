@@ -12,6 +12,7 @@ module.exports = {
     // 规则:https://github.com/chimurai/http-proxy-middleware
     proxy: {
         host: '0.0.0.0',
+        disableHostCheck: true,
         proxy: [{
             // 教育频道页面api代理
             context: ['/gaiya'],
