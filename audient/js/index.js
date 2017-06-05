@@ -53,7 +53,8 @@
                 `).join('') : `<li>本地没有编译过该项目</li>`)}
                 </ul>`;
             this.fetch('./pages.json', data => {
-                let {currentproject, list, ip: ipAddress } = data;
+                let {currentproject, list, ip} = data;
+                ipAddress = ip;
                 for (let project in list) {
                     if (project && list.hasOwnProperty(project)) {
                         if (project === currentproject) {
