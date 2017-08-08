@@ -1,4 +1,41 @@
-.border-top(@border-color: #e1e1e1) {
+/**
+ *  提供rem函数、半像素分割线、IOS吸顶stick解决方案
+ *  Author: Lori<wangccong@baidu.com>
+ */
+/**
+ *  rem函数，糯米组件化屏幕自适应
+ *  入参示例：.rem(width,640); 640为设计稿宽度（320*2）
+ */
+.rem(@name, @px){
+    @{name}: @px / 75 * 1rem;
+}
+.rem1(@name, @px){
+    @{name}: @px / 75 * 1rem;
+}
+.rem2(@name, @px1, @px2){
+    @{name}: @px1 / 75 * 1rem @px2 / 75 * 1rem;
+}
+.rem3(@name, @px1, @px2, @px3){
+    @{name}: @px1 / 75 * 1rem @px2 / 75 * 1rem @px3 / 75 * 1rem;
+}
+.rem4(@name, @px1, @px2, @px3, @px4){
+    @{name}: @px1 / 75 * 1rem @px2 / 75 * 1rem @px3 / 75 * 1rem @px4 / 75 * 1rem;
+}
+
+.rem640(@name, @px){
+    @{name}: @px / 64 * 1rem;
+}
+/**
+ *  IOS吸顶,android需要通过onscroll
+ */
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    position: relative;
+    top: 0px;
+}
+
+.border-top(@border-color: #E5E5E5) {
     border: none;
     position: relative;
     &:before {
@@ -27,7 +64,7 @@
         background-size: 3.5px 1px;
     }
 }
-.border-right(@border-color: #e1e1e1) {
+.border-right(@border-color: #E5E5E5) {
     position: relative;
     &:after {
         content: "";
@@ -41,7 +78,7 @@
                 transform-origin: 100% 0;
     }
 }
-.border-bottom(@border-color: #e1e1e1) {
+.border-bottom(@border-color: #E5E5E5) {
     border: none;
     position: relative;
     &:after {
@@ -57,7 +94,7 @@
     }
 }
 
-.border-left(@border-color: #e1e1e1) {
+.border-left(@border-color: #E5E5E5) {
     border: none;
     position: relative;
     &:before {
@@ -73,7 +110,7 @@
     }
 }
 
-.border-all(@border-color: #e1e1e1, @border-width: 1px, @border-radius: 0) {
+.border-all(@border-color: #E5E5E5, @border-width: 1px, @border-radius: 0) {
     border: none;
     position: relative;
     &:before {
@@ -81,6 +118,8 @@
         position: absolute;
         top: 0;
         left: 0;
+        right: 0;
+        bottom: 0;
         font-size: 0;
         line-height: 0;
         border-radius: @border-radius;
@@ -179,3 +218,136 @@ not all {
     }
 }
 
+/**
+ *  点击动效
+ *  dingcheng
+ **/
+
+#arc {
+    width: 0;
+    height: 0;
+    border-radius: 100%;
+    position: absolute;
+}
+.pulse {
+    animation: bgchange .2s ease-in;
+    -moz-animation: bgchange .2s ease-in; /* Firefox */
+    -webkit-animation: bgchange .2s ease-in;  /* Safari 和 Chrome */
+    -o-animation: bgchange .2s ease-in;
+    z-index: 99;
+    background: #000000;
+    opacity: 0;
+    // border: 2px solid #333;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+@keyframes bgchange
+{
+    0% {
+        transform: scale(0);
+        opacity: 0.00;
+    }
+    20% {
+        transform: scale(0.3);
+        opacity: 0.03;
+    }
+    40% {
+        transform: scale(0.5);
+        opacity: 0.06;
+    }
+    60& {
+        transform: scale(0.7);
+        opacity: 0.06;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.06;
+    }
+}
+
+@-moz-keyframes bgchange /* Firefox */
+{
+    0% {
+        transform: scale(0);
+        opacity: 0.00;
+    }
+    20% {
+        transform: scale(0.3);
+        opacity: 0.03;
+    }
+    40% {
+        transform: scale(0.5);
+        opacity: 0.06;
+    }
+    60& {
+        transform: scale(0.7);
+        opacity: 0.06;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.06;
+    }
+}
+
+@-webkit-keyframes bgchange /* Safari 和 Chrome */
+{
+    0% {
+        transform: scale(0);
+        opacity: 0.00;
+    }
+    20% {
+        transform: scale(0.3);
+        opacity: 0.03;
+    }
+    40% {
+        transform: scale(0.5);
+        opacity: 0.06;
+    }
+    60& {
+        transform: scale(0.7);
+        opacity: 0.06;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.06;
+    }
+}
+
+@-o-keyframes bgchange /* Opera */
+{
+    0% {
+        transform: scale(0);
+        opacity: 0.00;
+    }
+    20% {
+        transform: scale(0.3);
+        opacity: 0.03;
+    }
+    40% {
+        transform: scale(0.5);
+        opacity: 0.06;
+    }
+    60& {
+        transform: scale(0.7);
+        opacity: 0.06;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.06;
+    }
+}
+
+//广告标识
+.adv-tag{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 14px;
+    width: 24px;
+    background-image: url('./img/adv_tag.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 24px 14px;
+    z-index: 30;
+}

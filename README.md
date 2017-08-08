@@ -63,7 +63,11 @@ BNJS及vConsole注入情况说明：
 ```npm run release --module=模块名称 [--e=dev|qa|pro]```   
 说明：默认值pro
 
+
 ####其他说明文档
+
+npm run dev --module=test 查看测试项目
+
 
 ---
 [构建工具](./docs/构建工具版本更新情况.md)

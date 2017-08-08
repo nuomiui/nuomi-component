@@ -199,7 +199,7 @@ const canSupportNav = () => {
  * @param    {[type]}   version1 待比较版本
  * @return   {[type]}   boolean
  */
-var compareBNJSVerion = function (version) {
+const compareBNJSVerion = function (version) {
     if (version) {
         let bnjsVersionList = BNJS.version.split('.');
         let versionList = version.split('.');
@@ -225,8 +225,8 @@ const getParams = (search) => {
     return kv;
 }
 const getQueryStr = (params) => {
-    var query = [];
-    for (var i in params) {
+    let query = [];
+    for (let i in params) {
         if (i && params.hasOwnProperty(i)) {
             query.push(i + '=' + encodeURIComponent(params[i]));
         }
@@ -289,14 +289,53 @@ const featureTest = (property, value) => {
     style.cssText = prop + ['-webkit-', '-moz-', '-ms-', '-o-', ''].join(value + ';' + prop) + value + ';';
     return !!style[property] && !isAndroid();
 };
+// 非糯米NA端都认为是wap,比如渠道是手百之类的，因为不是所有组件都上到其他渠道，对应跳转来说目的地不明确
 let isWap = () => {
-    return BNJS.env.appName === 'bainuo-wap';
+    // 糯米渠道名称
+    if (BNJS.env.packageName == 'com.nuomi'
+        || BNJS.env.packageName == 'com.renren-inc.nuomi'
+        || BNJS.env.packageName == 'com.baidu.nuomi.qa.BaiduNuomiTuan') {
+        return BNJS.env.appName === 'bainuo-wap';
+    }
+    // 非糯米渠道的全部走wap
+    return true;
+};
+let getChannel = () => {
+    if (BNJS.env.packageName === 'com.nuomi'
+        || BNJS.env.packageName === 'com.renren-inc.nuomi'
+        || BNJS.env.packageName === 'com.baidu.nuomi.qa.BaiduNuomiTuan') {
+        return 'nuomi';
+    } else if (BNJS.env.packageName === 'com.baidu.BaiduBoxDev'
+        || BNJS.env.packageName === 'com.baidu.BaiduMobile'
+        || BNJS.env.packageName === 'com.baidu.BaiduMobile.dcps'
+        || BNJS.env.packageName === 'com.nuomi.dcps.plugin'
+        || BNJS.env.packageName === 'com.baidu.searchbox'){
+        return 'shoubai';
+    } else if (BNJS.env.appName === 'bainuo-wap' && BNJS.env.packageName === 'com.nuomi') {
+        return 'wap';
+    }
+    return 'wap';
+}
+let fileReader = (file, callback) => {
+    let fr = new FileReader();
+    fr.readAsDataURL(file);
+    fr.onload = function (e) {
+        callback(this.result);
+        fr = null;
+    };
+};
+let blobToDataUrl = (blob, callback) => {
+    let a = new FileReader();
+    a.onload = function (e) {
+        callback(e.target.result);
+    };
+    a.readAsDataURL(blob);
 };
 let waptitle = (title) => {
     if (isWap()) {
         setTimeout(function(){
             document.title = title;
-            var iframe = document.createElement('iframe');
+            let iframe = document.createElement('iframe');
             iframe.style.visibility = 'hidden';
             iframe.style.width = '1px';
             iframe.style.height = '1px';
@@ -333,16 +372,16 @@ const getLS = (cacheKey, succFunc, failFunc) => {
  * @param  {number} threshold 阈值
  * @return {boolean}          是否在视口内
  */
-var inView = (element, threshold) => {
+const inView = (element, threshold) => {
     if (!element) {
         return false;
     }
-    var viewTop = 0;
-    var viewBottom = window.innerHeight;
+    let viewTop = 0;
+    let viewBottom = window.innerHeight;
 
-    var boundingRect = element.getBoundingClientRect();
-    var elemTop = boundingRect.top - threshold;
-    var elemBottom = boundingRect.top + Math.round(boundingRect.height) + threshold;
+    let boundingRect = element.getBoundingClientRect();
+    let elemTop = boundingRect.top - threshold;
+    let elemBottom = boundingRect.top + Math.round(boundingRect.height) + threshold;
 
     return (
             viewTop <= elemTop && elemTop <= viewBottom
@@ -357,12 +396,12 @@ const inViewAll= (element, threshold) => {
     if (!element) {
         return false;
     }
-    var viewTop = 0;
-    var viewBottom = window.innerHeight;
+    let viewTop = 0;
+    let viewBottom = window.innerHeight;
 
-    var boundingRect = element.getBoundingClientRect();
-    var elemTop = boundingRect.top - threshold;
-    var elemBottom = boundingRect.top + Math.round(boundingRect.height) + threshold;
+    let boundingRect = element.getBoundingClientRect();
+    let elemTop = boundingRect.top - threshold;
+    let elemBottom = boundingRect.top + Math.round(boundingRect.height) + threshold;
 
     return viewTop <= elemTop && elemBottom <= viewBottom;
 };
@@ -373,11 +412,11 @@ const inViewAll= (element, threshold) => {
 * @return {number} 0：相等  1：当前app版本大于界限app版本  -1：当前app版本小于界限app版本
 * */
 const versionCompare = (version1, version2)=> {
-    var arr1 = version1.split('.'),
+    let arr1 = version1.split('.'),
         arr2 = version2.split('.');
-    var maxLength = Math.max(arr1.length, arr2.length);
-    var r, i1, i2;
-    for (var i = 0; i < maxLength; i++) {
+    let maxLength = Math.max(arr1.length, arr2.length);
+    let r, i1, i2;
+    for (let i = 0; i < maxLength; i++) {
         i1 = typeof arr1[i] === 'undefined' ? 0 : +arr1[i];
         i2 = typeof arr2[i] === 'undefined' ? 0 : +arr2[i];
         if (i1 > i2) {
@@ -393,6 +432,15 @@ const versionCompare = (version1, version2)=> {
     }
     return r;
 };
+const formatUrl = (url, params) => {
+    params = params && Object.keys(params).map(function (key) {
+        return [key, params[key]].map(encodeURIComponent).join('=');
+    }).join('&');
+
+    return params
+        ? url + (url.indexOf('?') >= 0 ? '&' : '?') + params
+        : url;
+};
 // window.onerror = function (msg, url, line) {
 //     if (url.match(/(\w+\-\w+)\./)) {
 //         let model = {
@@ -402,6 +450,89 @@ const versionCompare = (version1, version2)=> {
 //         log.addException(model, line);
 //     }
 // }
+/*
+* 接入第三方，wap环境下需将h5链接加百糯协议，保证在框架内运行不跳出
+* @param {string} 需要格式化的落地页链接
+* @return {string} 格式化后的可用链接
+* 说明：手百环境下packageName的值：ios下('com.baidu.BaiduBoxDev', 'com.baidu.BaiduMobile', 'com.baidu.BaiduMobile.dcps'),android下('com.nuomi.dcps.plugin', 'com.baidu.searchbox')
+* */
+const effectiveUrl = (url) => {
+    if(isWap()){
+        !(/^bainuo:\/\//.test(url)) && (url = 'bainuo://component?url='+encodeURIComponent(url));
+    }
+    return url;
+}
+//点击特效
+const addClickEffect = (evt) =>{
+    let id = evt.currentTarget;
+    let arc = '<div id="arc" class="arc"></div>';
+
+    let startX = 0,
+        startY = 0;
+
+    let click  = ()=> {
+        $(id).append(arc);
+        let px = $(id).offset().left;
+        let py = $(id).offset().top;
+        let w = parseInt($(id).width(), 10);
+        let h = parseInt($(id).height(), 10);
+        startX = Number(evt.pageX);
+        startY = Number(evt.pageY);
+        let x = Number(evt.pageX);
+        let y = Number(evt.pageY);
+        let fx = px + w;
+        let fy = py + h;
+        let x1 = x - px;
+        let x2 = fx - x;
+        let y1 = y - py;
+        let y2 = fy - y;
+        // let x1 = (x - px) >= (fx -x) ? (x - px) : (fx - x);
+        // let y1 = (y - py) >= (fy -y) ? (y - py) : (fy - y);
+        let x3 = x1 > x2 ? x1 : x2;
+        let y3 = y1 > y2 ? y1 : y2;
+        // let max  = x1 >= y1 ? x1 : y1;
+        let max = Math.sqrt(x3*x3 + y3*y3);
+        let left  = x - px - max;
+        let top = y - py - max;
+        $('#arc').css({'left': left, 'top': top, 'width': max*2.1, 'height': max*2.1});
+        $('#arc').addClass('pulse');
+        setTimeout(() =>{
+            $('#arc').remove();
+        }, 250);
+    }
+    let move = (e)=>{
+        let touch = e.touches[0]; //获取第一个触点
+        let x = Number(touch.pageX); //页面触点X坐标
+        let y = Number(touch.pageY); //页面触点Y坐标
+            //判断滑动方向
+        if (y != startY || x != startX) {
+            $('#arc').remove();
+        }
+    };
+    click();
+    $(id)[0].addEventListener('touchmove', move, false);
+}
+const cssSupports = (function() {
+    var div = document.createElement('div'),
+        vendors = 'Khtml O Moz Webkit'.split(' '),
+        len = vendors.length;
+    return function(prop) {
+        if ( prop in div.style ) return true;
+        if ('-ms-' + prop in div.style) return true;
+
+        prop = prop.replace(/^[a-z]/, function(val) {
+            return val.toUpperCase();
+        });
+
+        while(len--) {
+            if ( vendors[len] + prop in div.style ) {
+            return true;
+        }
+    }
+        return false;
+    };
+})();
+
 module.exports = {
     doNothing: doNothing,
     type: type,
@@ -418,6 +549,7 @@ module.exports = {
     isObject: isObject,
     isArray: isArray,
     addLog: log.addLog,
+    formatUrl: formatUrl,
     // addException: log.addException,
     getDayInMonth: getDayInMonth,
     compareVerion: compareVerion,
@@ -435,5 +567,11 @@ module.exports = {
     getLS: getLS,
     inView: inView,
     inViewAll: inViewAll,
-    versionCompare: versionCompare
+    versionCompare: versionCompare,
+    blobToDataUrl: blobToDataUrl,
+    fileReader: fileReader,
+    effectiveUrl: effectiveUrl,
+    getChannel: getChannel,
+    addClickEffect: addClickEffect,
+    cssSupports: cssSupports
 };

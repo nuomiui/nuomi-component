@@ -12,12 +12,13 @@ module.exports = {
     // 规则:https://github.com/chimurai/http-proxy-middleware
     proxy: {
         host: '0.0.0.0',
+        disableHostCheck: true,
         proxy: [{
             // 教育频道页面api代理
             context: ['/gaiya'],
-            target: 'http://cp01-rdqa-dev132.cp01.baidu.com:8181',
+            target: 'https://chi.nuomi.com',
             headers: {
-                Host: 'cp01-rdqa-dev132.cp01.baidu.com',
+                Host: 'chi.nuomi.com',
                 'Access-Control-Allow-Origin': '*'
             },
             secure: false
@@ -29,22 +30,13 @@ module.exports = {
                 'Access-Control-Allow-Origin': '*'
             },
             secure: false
-        }, {
-            // 丽人-个人中心 api代理
-            context: ['/bnnserver'],
-            target: 'http://bnhbp.nuomi.com',
-            headers: {
-                Host: 'bnhbp.nuomi.com',
-                'Access-Control-Allow-Origin': '*'
-            },
-            secure: false
         }]
     },
     // 项目根地址相对于webserver指定的跟地址路径
     webserverRoot: '',
     // webserverRoot: '/channel/output',
     //糯米组件平台分散认证域名
-    domainlist: ['app.nuomi.com', 'chi.nuomi.com'],
+    domainlist: ['xxx.xxx.com'],
     // 是否开启文件监听和请求参数补全
     audient: true
 }

@@ -27,7 +27,7 @@ pages.forEach(function (page) {
 });
 // 是否是测试环境注入
 if (commonApi.debugTool) {
-    entry.vconsole = commonApi.projectDir + '/node_modules/vconsole/dist/vconsole.min.js';
+    entry.vconsole = commonApi.watchFileDir + '/common/libs/vconsole/index.js';
 }
 // 设置只有本地开发环境才有的bnjs注入
 if (commonApi.polyfill) {

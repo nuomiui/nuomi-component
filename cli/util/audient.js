@@ -39,6 +39,20 @@ function writePageJSON(list) {
 
 }
 
+const getLocalAddr = function() {
+    let networkInterfaces = require("os").networkInterfaces();
+    let matches = [];
+
+    Object.keys(networkInterfaces).forEach(function (item) {
+        networkInterfaces[item].forEach(function (address) {
+            if (address.internal === false && address.family === "IPv4") {
+                matches.push(address.address);
+            }
+        });
+    });
+    return matches;
+}
+
 class Watcher {
     constructor(option) {
         let a = +new Date();
@@ -71,6 +85,7 @@ class Watcher {
     [_writePageJSON](list) {
         let json = {
             currentproject: this.module,
+            ip: getLocalAddr()[0],
             list: list
         };
         let jsonStr = JSON.stringify(json, null, 4);

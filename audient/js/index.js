@@ -35,24 +35,9 @@
                 })
             }
         },
-        getIp() {
-            // 获取ip地址
-            this.fetch('http://cp01-rdqa04-dev120.cp01.baidu.com:8099/mis/index.php?act=getip',
-                data => {
-                $('#loading').fadeOut(100);
-                $('#debugProject, #stopProject, #devtoolsTips').fadeIn(100);
-                ipAddress = data.data;
-                this.getProjectList();
-            }.bind(this), e => {
-                $('#loading').fadeOut(100);
-                $('#debugProject, #stopProject, #devtoolsTips').fadeIn(100);
-                $('#error').fadeIn(100).html('无法连接开发机，因此扫码调试功能失效，请与<a href="mailto:jincai.wang@foxmail.com">memoryza</a>联系')
-                ipAddress = 'localhost';
-                this.getProjectList();
-            });
-            return this;
-        },
         getProjectList() {
+            $('#loading').fadeOut(100);
+            $('#debugProject, #stopProject, #devtoolsTips').fadeIn(100);
             let webrootDir = "%webrootDir%";
             if (webrootDir) {
                 webrootDir = webrootDir.charAt(0) === '/' ? webrootDir : '/' + webrootDir;
@@ -67,9 +52,9 @@
                     <span class="qr" data-qs="${item.qs}"  data-href="http://${ipAddress + webrootDir + (item.url.charAt(0) === '/' ? item.url : '/' + item.url)}"></span>
                 `).join('') : `<li>本地没有编译过该项目</li>`)}
                 </ul>`;
-
             this.fetch('./pages.json', data => {
-                let {currentproject, list} = data;
+                let {currentproject, list, ip} = data;
+                ipAddress = ip;
                 for (let project in list) {
                     if (project && list.hasOwnProperty(project)) {
                         if (project === currentproject) {
@@ -82,6 +67,20 @@
             }, e => {
                 alert('数据解析失败');
             });
+            return this;
+        },
+        showSbQr() {
+            let href = $(this).data('href');
+            let qs = $(this).data('qs');
+            if (href) {
+                $('#qrCodeLayer').fadeIn();
+                let params = {
+                    "url": href + (qs ? ('?' + qs) : ''),
+                    "plugin_id":"com.nuomi.dcps.plugin"
+                };
+                $('#qrCode').html('').qrcode('baiduboxapp://invokePlug?action=open&params=' + encodeURIComponent(JSON.stringify(params)));
+            }
+            return false;
         },
         showSbQr() {
             let href = $(this).data('href');
@@ -115,7 +114,7 @@
                 .on('click', '#qrCodeLayer .bg, #qrCodeLayer .content', this.hideQr)
         },
         init() {
-            this.getIp().initEvent();
+            this.getProjectList().initEvent();
         }
     };
     Index.init();
