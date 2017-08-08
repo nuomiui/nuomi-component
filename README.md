@@ -76,6 +76,8 @@ npm run dev --module=test 查看测试项目
 
 [项目目录](./docs/项目目录结构.md)
 
+[fuxi项目代码迁移](./docs/迁移.md)
+
 [当前仓库包含的组件项目列表](./docs/项目说明.md)
 
 

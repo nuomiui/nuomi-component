@@ -294,7 +294,8 @@ let isWap = () => {
     // 糯米渠道名称
     if (BNJS.env.packageName == 'com.nuomi'
         || BNJS.env.packageName == 'com.renren-inc.nuomi'
-        || BNJS.env.packageName == 'com.baidu.nuomi.qa.BaiduNuomiTuan') {
+        || BNJS.env.packageName == 'com.baidu.nuomi.qa.BaiduNuomiTuan'
+        || BNJS.env.packageName == 'com.renren-inc.nuomi') {
         return BNJS.env.appName === 'bainuo-wap';
     }
     // 非糯米渠道的全部走wap
