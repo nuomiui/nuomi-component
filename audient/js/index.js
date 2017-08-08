@@ -82,19 +82,6 @@
             }
             return false;
         },
-        showSbQr() {
-            let href = $(this).data('href');
-            let qs = $(this).data('qs');
-            if (href) {
-                $('#qrCodeLayer').fadeIn();
-                let params = {
-                    "url": href + (qs ? ('?' + qs) : ''),
-                    "plugin_id":"com.nuomi.dcps.plugin"
-                };
-                $('#qrCode').html('').qrcode('baiduboxapp://invokePlug?action=open&params=' + encodeURIComponent(JSON.stringify(params)));
-            }
-            return false;
-        },
         showQr() {
             let href = $(this).data('href');
             let qs = $(this).data('qs');
